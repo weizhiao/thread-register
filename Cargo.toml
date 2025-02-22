@@ -5,3 +5,6 @@ version = "0.1.0"
 edition = "2024"
 repository= "https://github.com/weizhiao/thread-register"
 readme = "README.md"
+license = "MIT"
+categories = ["no-std", "os", "embedded"]
+description = "A library for obtaining and modifying thread register."

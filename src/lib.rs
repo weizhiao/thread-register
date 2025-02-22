@@ -1,5 +1,9 @@
+#![no_std]
+
 pub trait ModifyRegister {
+	/// Get thread register value
     fn get() -> usize;
+	/// Set thread register value
     unsafe fn set(value: usize);
 }
 
@@ -10,14 +14,14 @@ impl ModifyRegister for ThreadRegister {
     fn get() -> usize {
         let val: usize;
         unsafe {
-            std::arch::asm!("mov {}, fs:0",out(reg) val);
+            core::arch::asm!("mov {}, fs:0",out(reg) val);
         }
         val
     }
 
     unsafe fn set(value: usize) {
         unsafe {
-            std::arch::asm!("mov fs:0,{}",in(reg) value);
+            core::arch::asm!("mov fs:0,{}",in(reg) value);
         }
     }
 }
@@ -27,7 +31,7 @@ impl ModifyRegister for ThreadRegister {
     fn get() -> usize {
         let val: usize;
         unsafe {
-            std::arch::asm!("mrs {},tpidr_el0",out(reg) val);
+            core::arch::asm!("mrs {},tpidr_el0",out(reg) val);
         }
         val
     }
@@ -35,7 +39,7 @@ impl ModifyRegister for ThreadRegister {
     unsafe fn set(value: usize) {
         unsafe {
             unsafe {
-                std::arch::asm!("msr tpidr_el0,{}",in(reg) val);
+                core::arch::asm!("msr tpidr_el0,{}",in(reg) val);
             }
         }
     }
@@ -46,14 +50,14 @@ impl ModifyRegister for ThreadRegister {
     fn get() -> usize {
         let val: usize;
         unsafe {
-            std::arch::asm!("mv {}, tp",out(reg) val);
+            core::arch::asm!("mv {}, tp",out(reg) val);
         }
         val
     }
 
     unsafe fn set(value: usize) {
         unsafe {
-            std::arch::asm!("mv tp,{}",in(reg) value);
+            core::arch::asm!("mv tp,{}",in(reg) value);
         }
     }
 }
