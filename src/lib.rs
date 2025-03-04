@@ -1,9 +1,9 @@
 #![no_std]
 
 pub trait ModifyRegister {
-	/// Get thread register value
+    /// Get thread register value
     fn get() -> usize;
-	/// Set thread register value
+    /// Set thread register value
     unsafe fn set(value: usize);
 }
 
@@ -38,9 +38,7 @@ impl ModifyRegister for ThreadRegister {
 
     unsafe fn set(value: usize) {
         unsafe {
-            unsafe {
-                core::arch::asm!("msr tpidr_el0,{}",in(reg) val);
-            }
+            core::arch::asm!("msr tpidr_el0,{}",in(reg) value);
         }
     }
 }

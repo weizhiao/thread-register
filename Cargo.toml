@@ -1,9 +1,9 @@
 [package]
 name = "thread-register"
 authors = ["wzhao <1207410841@qq.com>"]
-version = "0.1.0"
+version = "0.1.1"
 edition = "2024"
-repository= "https://github.com/weizhiao/thread-register"
+repository = "https://github.com/weizhiao/thread-register"
 readme = "README.md"
 license = "MIT"
 categories = ["no-std", "os", "embedded"]
